@@ -5,6 +5,7 @@ from aws_cdk import (
     aws_iam as iam,
     aws_ec2 as ec2,
     aws_lambda as lambda_,
+    CfnOutput,
 )
 
 from constructs import Construct
@@ -109,3 +110,5 @@ class FckNatFastapiStack(Stack):
                 "ApiIntegration", handler=fastapi_handler
             ),
         )
+
+        CfnOutput(self, "HttpApiGatewayUrl", value=http_api.url)
